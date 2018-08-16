@@ -1,0 +1,45 @@
+<aura:component controller="AgendaController">
+
+<aura:handler name="init" action="{!c.doInit}" value="{!this}"/>
+    <!--Atributos-->
+     <aura:attribute name="myAgenda" type="Object" /> 
+     <aura:attribute name="columns" type="List"/>
+     <aura:attribute name="tiempo" type="Datetime"/>
+
+        <div aria-labelledby="newRecordform" >
+        <fieldset class="slds-box slds-theme--default slds-container--small">
+        <legend id="newrecordform" class="slds-text-heading--small
+          slds-p-vertical--medium">
+          <H1>Registro de Clases</H1>
+        </legend>
+        <form class="slds-form--stacked">
+        
+            <lightning:input aura:id="search-Clase" 
+                                     label="Enter your Clase"
+                                     name="search-Clase"
+                                     type="search"/>
+            <lightning:input aura:id="search-Alumno" 
+                                     label="Enter You Name"
+                                     name="search-Alumno"
+                                     type="search"/>
+                                     
+
+            <lightning:input type="datetime" name="Hora" value ="{!v.tiempo}" label="Enter a date/time value" />
+
+            <lightning:button label="Create Record" 
+                                      class="slds-m-top--medium"
+                                      variant="brand"
+                                      onclick="{!c.submitForm}"/>
+        </form>
+        </fieldset>
+        </div>
+        
+        <div style="height: 300px">
+        <lightning:datatable
+                keyField="id"
+                data="{! v.myAgenda }"
+                columns="{! v.columns }"
+                hideCheckboxColumn="true"/>
+    </div>
+
+</aura:component>
