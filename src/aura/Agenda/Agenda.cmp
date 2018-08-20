@@ -1,10 +1,14 @@
 <aura:component controller="AgendaController">
 
 <aura:handler name="init" action="{!c.doInit}" value="{!this}"/>
+
+
     <!--Atributos-->
      <aura:attribute name="myAgenda" type="Object" /> 
      <aura:attribute name="columns" type="List"/>
      <aura:attribute name="tiempo" type="Datetime"/>
+     <aura:attribute name="selectedAlumno" type="sObject" default="{}"/>
+     <aura:attribute name="selectedClase" type="sObject" default="{}"/>
 
         <div aria-labelledby="newRecordform" >
         <fieldset class="slds-box slds-theme--default slds-container--small">
@@ -13,15 +17,26 @@
           <H1>Registro de Clases</H1>
         </legend>
         <form class="slds-form--stacked">
+        <!--CLASE-->
+        <!--<lightning:input aura:id="search-Clase" 
+                            label="Enter your Clase"
+                            name="search-Clase"
+                            type="search"/>-->
         
-            <lightning:input aura:id="search-Clase" 
-                                     label="Enter your Clase"
-                                     name="search-Clase"
-                                     type="search"/>
-            <lightning:input aura:id="search-Alumno" 
-                                     label="Enter You Name"
-                                     name="search-Alumno"
-                                     type="search"/>
+        <c:customLookup objectAPIName="Clase__c" 
+                            IconName="standard:Account" 
+                            selectedRecord="{!v.selectedClase}" 
+                            label="Clase"/>
+        <!--ALUMNO-->                    
+        <!--<lightning:input aura:id="search-Alumno" 
+                            label="Enter You Name"
+                            name="search-Alumno"
+                            type="search"/>-->
+        
+        <c:customLookup objectAPIName="Alumno__c" 
+                            IconName="standard:Account" 
+                            selectedRecord="{!v.selectedAlumno}" 
+                            label="Alumno"/>
                                      
 
             <lightning:input type="datetime" name="Hora" value ="{!v.tiempo}" label="Enter a date/time value" />
@@ -39,7 +54,8 @@
                 keyField="id"
                 data="{! v.myAgenda }"
                 columns="{! v.columns }"
-                hideCheckboxColumn="true"/>
+                hideCheckboxColumn="true"
+                onrowaction="{!c.handleRowAction }"/>
     </div>
 
 </aura:component>
