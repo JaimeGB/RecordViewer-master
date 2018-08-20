@@ -115,6 +115,10 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>AgendaController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>Animal</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -240,6 +244,10 @@
     </classAccesses>
     <classAccesses>
         <apexClass>calculatorServices</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>customLookUpController</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
